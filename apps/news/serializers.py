@@ -7,4 +7,12 @@ from .models import NewsModel
 class NewsViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewsModel
-        exclude = ["created_at", ]
+        fields = (
+            "id",
+            "title",
+            # "get_absolute_url",
+            "descripton",
+            
+            "get_image",
+            "get_thumbnail"
+        )
