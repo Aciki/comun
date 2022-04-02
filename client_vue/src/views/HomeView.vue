@@ -17,7 +17,7 @@
       </div>
       
 
-      <div class="column is-3" v v-for="news in latestProducts"
+      <div class="column is-3" v v-for="news in latestNews"
       v-bind:key="news.id">
       <div class="box">
         <figure class="image mb-4">
@@ -27,6 +27,9 @@
       <h3 class="is-size-4">
         {{ news.title }}
       </h3>
+      <p class="is-size-6 has-text-grey">{{ news.created_at }}</p>
+
+      <router-link v-bind:to="news.get_absolute_url" class="button is-dark mt-4">View details</router-link>
 
 
       </div>
@@ -47,23 +50,23 @@ export default {
   name: 'Home',
   data() {
     return {
-      latestProducts: []
+      latestNews: []
     }
   },
   // components: {
   //   ProductBox
   // },
   mounted() {
-    this.getLatestProducts()
+    this.getLatestNews()
     document.title = 'Home | Djackets'
   },
   methods: {
-    async getLatestProducts() {
+    async getLatestNews() {
       this.$store.commit('setIsLoading', true)
       await axios
         .get('/all/')
         .then(response => {
-          this.latestProducts = response.data
+          this.latestNews = response.data
         })
         .catch(error => {
           console.log(error)

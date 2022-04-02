@@ -10,8 +10,9 @@ class NewsViewSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "title",
-            # "get_absolute_url",
+            "get_absolute_url",
             "descripton",
+            "created_at",
             
             "get_image",
             "get_thumbnail"

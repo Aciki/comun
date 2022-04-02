@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from autoslug import AutoSlugField
@@ -23,8 +24,8 @@ class NewsModel(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
 
-    image = models.ImageField(
-        verbose_name=_("Main Photo"), default="", null=True, blank=True
+    image = models.ImageField( upload_to='images/',
+        verbose_name=_("Main Photo"), default="", null=True, blank=True , 
     )
     thumbnail = ResizedImageField(size=[300, 200], quality=85)
     photo2 = models.ImageField(
@@ -49,6 +50,9 @@ class NewsModel(models.Model):
     def __str__(self):
         return self.slug
 
+    def get_absolute_url(self):
+        return f'/{self.slug}/'
+
    
 
 
@@ -56,6 +60,7 @@ class NewsModel(models.Model):
         if self.image:
             print("sjdnjsdcnjcdsjcns")
             return 'http://127.0.0.1:8000' + self.image.url
+            print(self.image.url)
         return ''
     
     def get_thumbnail(self):

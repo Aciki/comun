@@ -1,4 +1,3 @@
-""""
 <template>
     <div class="page-product">
         <div class="columns is-multiline">
@@ -7,15 +6,16 @@
                     <img v-bind:src="news.get_image">
                 </figure>
 
-                <h1 class="title">{{ news.name }}</h1>
+                <h1 class="title">{{ news.title }}</h1>
 
-                <p>{{ news.description }}</p>
+                <p>{{ news.descripton }}</p>
+                <p>Helloooooooooooo</p>
             </div>
 
             <div class="column is-3">
                 <h2 class="subtitle">Information</h2>
 
-                <!-- <p><strong>Price: </strong>${{ product.price }}</p> -->
+                <!-- <p><strong>Price: </strong>${{ news.price }}</p> -->
 
                 <!-- <div class="field has-addons mt-6">
                     <div class="control">
@@ -35,53 +35,51 @@
 import axios from 'axios'
 // import { toast } from 'bulma-toast'
 export default {
-    name: 'Product',
+    name: 'News',
     data() {
         return {
-            product: {},
+            news: {},
             quantity: 1
         }
     },
     mounted() {
-        this.getProduct() 
+        this.getNews() 
     },
     methods: {
-        async getProduct() {
+        async getNews() {
             this.$store.commit('setIsLoading', true)
-            const category_slug = this.$route.params.category_slug
-            const product_slug = this.$route.params.product_slug
+            // const category_slug = this.$route.params.category_slug
+            const slug = this.$route.params.slug
             await axios
-                .get(`/api/v1/products/${category_slug}/${product_slug}`)
+                .get(`${slug}`)
                 .then(response => {
-                    this.product = response.data
-                    document.title = this.product.name + ' | Djackets'
+                    this.news = response.data
+                    document.title = this.news.title + ' | Komunalec'
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log(error,slug)
                 })
             
             this.$store.commit('setIsLoading', false)
         },
-        addToCart() {
-            if (isNaN(this.quantity) || this.quantity < 1) {
-                this.quantity = 1
-            }
-            const item = {
-                product: this.product,
-                quantity: this.quantity
-            }
-            this.$store.commit('addToCart', item)
-            toast({
-                message: 'The product was added to the cart',
-                type: 'is-success',
-                dismissible: true,
-                pauseOnHover: true,
-                duration: 2000,
-                position: 'bottom-right',
-            })
-        }
+        // addToCart() {
+        //     if (isNaN(this.quantity) || this.quantity < 1) {
+        //         this.quantity = 1
+        //     }
+        //     const item = {
+        //         product: this.product,
+        //         quantity: this.quantity
+        //     }
+        //     this.$store.commit('addToCart', item)
+        //     toast({
+        //         message: 'The product was added to the cart',
+        //         type: 'is-success',
+        //         dismissible: true,
+        //         pauseOnHover: true,
+        //         duration: 2000,
+        //         position: 'bottom-right',
+        //     })
+        // }
     }
 }
 </script>
-
-""""""
