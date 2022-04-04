@@ -13,6 +13,7 @@ class NewsViewSerializer(serializers.ModelSerializer):
             "get_absolute_url",
             "descripton",
             "created_at",
+            "price",
             
             "get_image",
             "get_thumbnail"

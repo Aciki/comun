@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from email.policy import default
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from autoslug import AutoSlugField
@@ -23,11 +24,12 @@ class NewsModel(models.Model):
     descripton = models.TextField()
     created_at = models.DateTimeField(auto_now=True)
     slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
+    price = models.IntegerField(null=True, blank=True )
 
     image = models.ImageField( upload_to='images/',
         verbose_name=_("Main Photo"), default="", null=True, blank=True , 
     )
-    thumbnail = ResizedImageField(size=[300, 200], quality=85)
+    thumbnail = ResizedImageField(size=[300, 200], quality=85 , default='348133-sekogash-imate-izbor.jpg')
     photo2 = models.ImageField(
        
         null=True,
