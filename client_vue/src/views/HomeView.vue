@@ -59,7 +59,7 @@ export default {
   // },
   mounted() {
     this.getLatestNews()
-    document.title = 'Home | Djackets'
+    document.title = 'Home | Komunalec'
   },
   methods: {
     async getLatestNews() {

@@ -53,10 +53,10 @@
                 <router-link to="/log-in" class="button is-light">Наjавете се</router-link>
               </template>
 
-              <router-link to="/cart" class="button is-success">
+              <!-- <router-link to="/cart" class="button is-success">
                 <span class="icon"><i class="fas fa-shopping-cart"></i></span>
                 <span>Cart ({{ cartTotalLength }})</span>
-              </router-link>
+              </router-link> -->
             </div>
           </div>
         </div>

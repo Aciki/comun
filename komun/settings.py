@@ -35,7 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #third part
+    
     "rest_framework",
+    "djoser",
+    "rest_framework_simplejwt",
     "corsheaders",
 
     # my apps
@@ -62,7 +65,11 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 
-
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    )
+}
 
 ROOT_URLCONF = 'komun.urls'
 
