@@ -16,8 +16,8 @@
          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <router-link to="/summer" class="navbar-item">ПОЧЕТНА</router-link>
-          <router-link to="/winter" class="navbar-item">ПРОЕКТИ</router-link>
+          <router-link to="/" class="navbar-item">ПОЧЕТНА</router-link>
+          <router-link to="/" class="navbar-item">ПРОЕКТИ</router-link>
 
           <!-- <div class="navbar-item">
             <form method="get" action="/search">
@@ -39,9 +39,9 @@
         </div>
 
         <div class="navbar-end">
-          <router-link to="/summer" class="navbar-item">ИЗВЕШТАИ</router-link>
+          <router-link to="/" class="navbar-item">ИЗВЕШТАИ</router-link>
           
-          <router-link to="/winter" class="navbar-item">ЗА НАС</router-link>
+          <router-link to="/" class="navbar-item">ЗА НАС</router-link>
 
           <div class="navbar-item">
             <div class="buttons">
@@ -92,23 +92,24 @@ export default {
     this.$store.commit('initializeStore')
     const token = this.$store.state.token
     if (token) {
-        axios.defaults.headers.common['Authorization'] = "Token " + token
+        axios.defaults.headers.common['Authorization'] = " Token " + token
     } else {
         axios.defaults.headers.common['Authorization'] = ""
     }
+    
   },
-  mounted() {
-    this.cart = this.$store.state.cart
-  },
-  computed: {
-      cartTotalLength() {
-          let totalLength = 0
-          for (let i = 0; i < this.cart.items.length; i++) {
-              totalLength += this.cart.items[i].quantity
-          }
-          return totalLength
-      }
-  }
+  // mounted() {
+  //   this.cart = this.$store.state.cart
+  // },
+  // computed: {
+  //     cartTotalLength() {
+  //         let totalLength = 0
+  //         for (let i = 0; i < this.cart.items.length; i++) {
+  //             totalLength += this.cart.items[i].quantity
+  //         }
+  //         return totalLength
+  //     }
+  // }
 }
 </script>
 
